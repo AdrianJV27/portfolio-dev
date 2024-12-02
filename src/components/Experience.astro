@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content"
+import ExperienceItem from "./ExperienceItem.astro"
+
+const experiences = await getCollection('experience')
+
+---
+
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700 mt-10 ml-3">
+    {experiences.reverse().map(experience => {
+        experience
+
+        return (
+        <li class="mb-10 ms-4">
+            <ExperienceItem {experience}/>
+        </li>
+        )
+    })}
+    
+</ol>
+

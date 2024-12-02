@@ -1,0 +1,68 @@
+---
+import Code from "../components/icons/Code.astro"
+import { render } from "astro:content"
+import { getCollection } from "astro:content"
+import CSSIcon from "../components/icons/CSS.astro";
+import HTMLIcon from "../components/icons/HTML.astro";
+import VueIcon from "../components/icons/Vue.astro";
+import JavaScriptIcon from "../components/icons/JavaScript.astro";
+
+
+const TAGS = {
+    JavaScript:{
+        name: "JavaScript",
+        class: "bg-gray-900 text-yellow-500",
+        icon: JavaScriptIcon,
+    },
+    HTML:{
+        name: "HTML",
+        class: "bg-gray-900 text-orange-500",
+        icon: HTMLIcon,
+    },
+    CSS:{
+        name: "CSS",
+        class: "bg-gray-900 text-purple-500",
+        icon: CSSIcon,
+    },
+    Vue:{
+        name: "Vue",
+        class: "bg-gray-900 text-green-500",
+        icon: VueIcon,
+    },
+}
+
+
+const projects = await getCollection('projects')
+---
+
+
+
+{
+    projects.map( async (project) => {
+        const {data} = project
+        const {title, description,  date, link, github, image, tags} = data
+        const {Content} = await render(project)
+
+        
+            return(
+                <article>
+                    <h3 class="text-2xl font-semibold text text-yellow-600 dark:text-white">{title}</h3>
+                    <p class="text-lg mb-4 text-pretty" >{description}</p>
+                    <ul class="flex gap-x-2 flex-row ">
+                        {tags.map( (tagName) => {
+                            const tag = TAGS[tagName as keyof typeof TAGS]
+                            return (
+                                <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-2`}>
+                                    <tag.icon class="size-4"></tag.icon>
+                                    {tag.name}
+                                </span>
+                            )
+                        }
+                        )}
+                    </ul>
+                    <img class="rounded" src={image} alt={`Captura de pantalla del proyecto ${title}`}/>
+                </article>
+            )
+        }
+    )
+}
