@@ -6,6 +6,7 @@ import CSSIcon from "../components/icons/CSS.astro";
 import HTMLIcon from "../components/icons/HTML.astro";
 import VueIcon from "../components/icons/Vue.astro";
 import JavaScriptIcon from "../components/icons/JavaScript.astro";
+import AstroIcon from "./icons/AstroIcon.astro";
 
 
 const TAGS = {
@@ -28,6 +29,11 @@ const TAGS = {
         name: "Vue",
         class: "bg-gray-900 text-green-500",
         icon: VueIcon,
+    },
+    Astro:{
+        name: "Astro",
+        class: "bg-gray-900 text-orange-400",
+        icon: AstroIcon,
     },
 }
 
@@ -60,7 +66,11 @@ const projects = await getCollection('projects')
                         }
                         )}
                     </ul>
-                    <img class="rounded" src={image} alt={`Captura de pantalla del proyecto ${title}`}/>
+                    <div class="relative my-5 overflow-hidden">
+                        <a href={link}>
+                            <img class="rounded hover:scale-110 transition ease-in-out duration-300" src={image} alt={`Captura de pantalla del proyecto ${title}`}/>
+                        </a>
+                    </div>
                 </article>
             )
         }

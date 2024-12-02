@@ -4,7 +4,7 @@ description: De los primeros proyectos que hice con Vue solo
 date: Nan
 link: 'https://adrianjv27.github.io/movie-list/#/movie-list'
 github: 'https://github.com/AdrianJV27/movie-list'
-image: 'img/project_movie_vue.webp'
+image: 'img/movie_list_project.webp'
 tags: ['HTML', 'CSS', 'JavaScript', 'Vue']
 ---
 
